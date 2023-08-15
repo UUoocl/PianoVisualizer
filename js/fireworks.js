@@ -23,7 +23,8 @@ var Fireworks = (function() {
       fireworkCanvas = null,
       fireworkContext = null,
       viewportWidth = 0,
-      viewportHeight = 0;
+      viewportHeight = 0,
+      toggle = 0;
 
   /**
    * Create DOM elements and get your game on
@@ -116,8 +117,13 @@ var Fireworks = (function() {
    * black. The bonus of this is the trails effect we get
    */
   function clearContext() {
-    mainContext.fillStyle = "rgba(0,0,0,0.2)";
-    mainContext.fillRect(0, 0, viewportWidth, viewportHeight);
+    mainContext.fillStyle = "rgba(0,0,0,.01)";
+    if(toggle){
+        mainContext.fillRect(0, 0, viewportWidth, viewportHeight);
+        toggle = toggle - 1;
+    } else { mainContext.clearRect(0,0,viewportWidth, viewportHeight);
+        toggle++;
+    };
   }
 
   /**
@@ -314,6 +320,7 @@ Particle.prototype = {
   }
 
 };
+
 
 /**
  * Stores references to the images that

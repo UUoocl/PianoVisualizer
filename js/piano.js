@@ -35,15 +35,19 @@ function onMIDISuccess(midiAccess) {
 
     console.log("INPUTS - Type: useMidiIn(id)")
     var inputs = midi.inputs.values();
+    var text;
     // loop over all available inputs and listen for any MIDI input
     for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
         // each time there is a midi message call the onMIDIMessage function
         console.log("ID: "+input["value"]["id"]+ " Name:"+input["value"]["name"])
+        text = text + "\n" + "ID: " + input["value"]["id"]+ " Name:"+input["value"]["name"];
         // if(input["value"]["id"] == "input-0") {
         //     input.value.onmidimessage = onMIDIMessage;
-        // }
-            
+        // }       
     }
+    let deviceID = prompt("Enter Midi device ID (example: input-0):\n"+text,"input-");
+    useMidiIn(deviceID);
+
 
     console.log("----------------------------------------")
     console.log("OUTPUTS - Type: passThroughMidiOut(id)")
@@ -76,6 +80,9 @@ function onMIDIMessage(event) {
     // bend: 224, cmd: 14
 
     switch (type) {
+        case 176: // noteOn message 
+             noteOn(note, velocity);
+             break;
         case 144: // noteOn message 
              noteOn(note, velocity);
              break;
@@ -227,7 +234,7 @@ function getKeyPosition(i) {
 }
 
 //Set input output every time
-// setTimeout(function() {
-//     useMidiIn("input-0")
-//     passThroughMidiOut("output-2")
-// }, 500)
+/*  setTimeout(function() {
+     useMidiIn("input-0")
+     passThroughMidiOut("output-1")
+ }, 500) */
