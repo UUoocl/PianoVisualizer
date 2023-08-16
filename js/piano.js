@@ -15,12 +15,14 @@ if (navigator.requestMIDIAccess) {
 }
 
 function useMidiIn(id) {
+    console.log(id)
     var inputs = midi.inputs.values();
     for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
         if(input["value"]["id"] == id) {
             input.value.onmidimessage = onMIDIMessage;
         }
     }
+    document.getElementById("selectMidi").innerHTML = "";
     //dev.value.onmidimessage = onMIDIMessage;
 }
 
@@ -36,19 +38,18 @@ function onMIDISuccess(midiAccess) {
     console.log("INPUTS - Type: useMidiIn(id)")
     var inputs = midi.inputs.values();
     var text;
+    
     // loop over all available inputs and listen for any MIDI input
     for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
         // each time there is a midi message call the onMIDIMessage function
         console.log("ID: "+input["value"]["id"]+ " Name:"+input["value"]["name"])
         text = text + "\n" + "ID: " + input["value"]["id"]+ " Name:"+input["value"]["name"];
+        document.getElementById("selectMidi").innerHTML = document.getElementById("selectMidi").innerHTML + `\n <H3  class=\"device\" onclick=\"useMidiIn('${input["value"]["id"]}')\">${input["value"]["name"]}<\/H3>`;
         // if(input["value"]["id"] == "input-0") {
         //     input.value.onmidimessage = onMIDIMessage;
         // }       
     }
-    let deviceID = prompt("Enter Midi device ID (example: input-0):\n"+text,"input-");
-    useMidiIn(deviceID);
-
-
+    
     console.log("----------------------------------------")
     console.log("OUTPUTS - Type: passThroughMidiOut(id)")
     var outputs = midi.outputs.values();
