@@ -5,7 +5,7 @@ A fork of PianoVisualizer configured to run in a transparent window
 ## Setup
 1. Download this repo
 2. Download [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html)
-3. Create a new MIDI port in loopMIDI
+3. Create a new MIDI port in loopMIDI <br/>
 ![image](https://github.com/UUoocl/PianoVisualizer/assets/99063397/93cbc220-6cde-4d03-80f7-188ddabe05ae)
 
 5. Download my Reveal Player app
