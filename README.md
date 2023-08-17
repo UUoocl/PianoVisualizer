@@ -3,7 +3,7 @@
 Visualize MIDI Input as Firework.
 A fork of PianoVisualizer configured to run in a transparent window
 ## Setup
-1. Download this repo,br/>
+1. Download this repo<br/>
    ![image](https://github.com/UUoocl/PianoVisualizer/assets/99063397/8c37847e-a565-46d3-adab-6edaf8c12446)
 
 2. Download [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html)
